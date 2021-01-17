@@ -23,46 +23,46 @@ describe ForecastService, :vcr do
 
     expect(data[:current]).to be_a Hash
     expect(data[:current]).to have_key(:dt)
-    expect(data[:current][:dt]).to be_an Integer 
+    expect(data[:current][:dt]).to be_an Integer
 
     expect(data[:current]).to have_key(:sunrise)
-    expect(data[:current][:sunrise]).to be_an Integer 
+    expect(data[:current][:sunrise]).to be_an Integer
 
     expect(data[:current]).to have_key(:sunset)
-    expect(data[:current][:sunset]).to be_an Integer 
+    expect(data[:current][:sunset]).to be_an Integer
 
     expect(data[:current]).to have_key(:temp)
-    expect(data[:current][:temp]).to be_a Float 
+    expect(data[:current][:temp]).to be_a Float
 
     expect(data[:current]).to have_key(:feels_like)
-    expect(data[:current][:feels_like]).to be_a Float 
+    expect(data[:current][:feels_like]).to be_a Float
 
     expect(data[:current]).to have_key(:pressure)
-    expect(data[:current][:pressure]).to be_an Integer 
+    expect(data[:current][:pressure]).to be_an Integer
 
     expect(data[:current]).to have_key(:humidity)
-    expect(data[:current][:humidity]).to be_an Integer 
+    expect(data[:current][:humidity]).to be_an Integer
 
     expect(data[:current]).to have_key(:dew_point)
-    expect(data[:current][:dew_point]).to be_a Float 
+    expect(data[:current][:dew_point]).to be_a Float
 
     expect(data[:current]).to have_key(:uvi)
-    expect(data[:current][:uvi]).to be_a Float 
+    expect(data[:current][:uvi]).to be_a Float
 
     expect(data[:current]).to have_key(:clouds)
-    expect(data[:current][:clouds]).to be_an Integer 
+    expect(data[:current][:clouds]).to be_an Integer
 
     expect(data[:current]).to have_key(:visibility)
-    expect(data[:current][:visibility]).to be_an Integer 
+    expect(data[:current][:visibility]).to be_an Integer
 
     expect(data[:current]).to have_key(:wind_speed)
-    expect(data[:current][:wind_speed]).to be_a Float 
+    expect(data[:current][:wind_speed]).to be_a Float
 
     expect(data[:current]).to have_key(:wind_deg)
-    expect(data[:current][:wind_deg]).to be_an Integer 
+    expect(data[:current][:wind_deg]).to be_an Integer
 
     expect(data[:current]).to have_key(:weather)
-    expect(data[:current][:weather]).to be_an Array 
+    expect(data[:current][:weather]).to be_an Array
     expect(data[:current][:weather][0]).to be_a Hash
     expect(data[:current][:weather][0]).to have_key(:id)
     expect(data[:current][:weather][0][:id]).to be_an Integer
@@ -75,8 +75,7 @@ describe ForecastService, :vcr do
 
     expect(data[:current][:weather][0]).to have_key(:icon)
     expect(data[:current][:weather][0][:icon]).to be_a String
-  
-  
+
     expect(data[:minutely]).to be_an Array
     expect(data[:minutely][0]).to be_a Hash
     expect(data[:minutely][0]).to have_key(:dt)
@@ -84,7 +83,6 @@ describe ForecastService, :vcr do
 
     expect(data[:minutely][0]).to have_key(:precipitation)
     expect(data[:minutely][0][:precipitation]).to be_an Integer
-
 
     expect(data[:hourly]).to be_an Array
     expect(data[:hourly][0]).to be_a Hash
@@ -135,7 +133,6 @@ describe ForecastService, :vcr do
     expect(data[:hourly][0][:weather][0][:description]).to be_a String
     expect(data[:hourly][0][:weather][0]).to have_key(:icon)
     expect(data[:hourly][0][:weather][0][:icon]).to be_a String
-
 
     expect(data[:daily]).to be_an Array
     expect(data[:daily][0]).to be_a Hash
@@ -203,7 +200,7 @@ describe ForecastService, :vcr do
 
     expect(data[:daily][0]).to have_key(:clouds)
     expect(data[:daily][0][:clouds]).to be_an Integer
-    
+
     expect(data[:daily][0]).to have_key(:pop)
     expect(data[:daily][0][:pop]).to be_a Float
 
