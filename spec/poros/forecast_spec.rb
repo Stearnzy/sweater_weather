@@ -27,6 +27,7 @@ describe 'Forecast' do
   end
 
   it 'has attributes' do
+    expect(@forecast).to have_attributes(id: nil)
     expect(@forecast).to have_attributes(current_weather: CurrentWeather)
     expect(@forecast).to have_attributes(hourly_forecast: Array)
     expect(@forecast).to have_attributes(daily_forecast: Array)
