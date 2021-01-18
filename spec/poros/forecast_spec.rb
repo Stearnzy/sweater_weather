@@ -29,8 +29,8 @@ describe 'Forecast' do
   it 'has attributes' do
     expect(@forecast).to have_attributes(id: nil)
     expect(@forecast).to have_attributes(current_weather: CurrentWeather)
-    expect(@forecast).to have_attributes(hourly_forecast: Array)
-    expect(@forecast).to have_attributes(daily_forecast: Array)
+    expect(@forecast).to have_attributes(hourly_weather: Array)
+    expect(@forecast).to have_attributes(daily_weather: Array)
   end
 
   it 'CurrentWeather attribute is one object' do
@@ -38,14 +38,14 @@ describe 'Forecast' do
   end
 
   it 'HourlyWeather attribute is an array' do
-    expect(@forecast.hourly_forecast).to be_an Array
-    expect(@forecast.hourly_forecast[0]).to be_a HourlyWeather
-    expect(@forecast.hourly_forecast.count).to eq(8)
+    expect(@forecast.hourly_weather).to be_an Array
+    expect(@forecast.hourly_weather[0]).to be_a HourlyWeather
+    expect(@forecast.hourly_weather.count).to eq(8)
   end
 
   it 'DailyWeather attribute is an array' do
-    expect(@forecast.daily_forecast).to be_an Array
-    expect(@forecast.daily_forecast[0]).to be_a DailyWeather
-    expect(@forecast.daily_forecast.count).to eq(5)
+    expect(@forecast.daily_weather).to be_an Array
+    expect(@forecast.daily_weather[0]).to be_a DailyWeather
+    expect(@forecast.daily_weather.count).to eq(5)
   end
 end

@@ -8,7 +8,7 @@ describe ForecastFacade do
 
     expect(forecast).to be_a Forecast
     expect(forecast).to have_attributes(current_weather: CurrentWeather)
-    expect(forecast).to have_attributes(hourly_forecast: Array)
-    expect(forecast).to have_attributes(daily_forecast: Array)
+    expect(forecast).to have_attributes(hourly_weather: Array)
+    expect(forecast).to have_attributes(daily_weather: Array)
   end
 end
