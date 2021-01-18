@@ -1,14 +1,16 @@
 class ForecastFacade
-  def self.get_weather_report(lat, long)
-    data = ForecastService.complete_weather_report(lat, long)
+  def self.get_weather_report(location)
+    map_data = MapquestFacade.location_to_coordinates(location)
 
-    current_weather = CurrentWeather.new(data[:current])
+    weather_data = ForecastService.complete_weather_report(map_data.lat, map_data.long)
 
-    hourly_weather = data[:hourly][0..7].map do |hour|
+    current_weather = CurrentWeather.new(weather_data[:current])
+
+    hourly_weather = weather_data[:hourly][0..7].map do |hour|
       HourlyWeather.new(hour)
     end
 
-    daily_weather = data[:daily][0..4].map do |day|
+    daily_weather = weather_data[:daily][0..4].map do |day|
       DailyWeather.new(day)
     end
 
