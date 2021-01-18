@@ -19,7 +19,6 @@ describe 'CurrentWeather' do
     expect(@weather).to have_attributes(datetime: Time)
     expect(@weather).to have_attributes(sunrise: Time)
     expect(@weather).to have_attributes(sunset: Time)
-    expect(@weather).to have_attributes(sunset: Time)
     expect(@weather).to have_attributes(temperature: Numeric)
     expect(@weather).to have_attributes(feels_like: Numeric)
     expect(@weather).to have_attributes(humidity: Numeric)
