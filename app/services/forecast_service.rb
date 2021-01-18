@@ -3,6 +3,7 @@ class ForecastService
     response = conn.get('/data/2.5/onecall') do |req|
       req.params[:lat] = "#{lat}"
       req.params[:lon] = "#{long}"
+      req.params[:units] = 'imperial'
       req.params[:appid] = ENV['OPENWEATHER_KEY']
     end
     parse(response)
