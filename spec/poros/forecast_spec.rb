@@ -13,11 +13,11 @@ describe 'Forecast' do
       hourly_weather = data[:hourly][0..7].map do |hour|
         HourlyWeather.new(hour)
       end
-  
+
       daily_weather = data[:daily][0..4].map do |day|
         DailyWeather.new(day)
       end
-  
+
       @forecast = Forecast.new(current_weather, hourly_weather, daily_weather)
     end
   end
