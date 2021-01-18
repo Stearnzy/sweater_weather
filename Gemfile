@@ -38,6 +38,7 @@ group :development, :test do
   gem 'pry'
   gem 'shoulda-matchers'
   gem 'capybara'
+  gem 'rubocop-rails'
 end
 
 group :development do
@@ -49,6 +50,8 @@ end
 
 group :test do
   gem 'simplecov'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
