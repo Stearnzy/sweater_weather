@@ -4,9 +4,15 @@ class MapquestFacade
       data = MapquestService.location_coordinates(location)
       coordinates = Coordinates.new(data)
 
-      
+
     # else
       # error message
     # end
+  end
+
+  def self.arrival_time(origin, destination)
+    data = MapquestService.get_directions(origin, destination)
+    travel_time = data[:route][:realTime]
+    Time.now.to_i + travel_time
   end
 end
