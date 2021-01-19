@@ -15,4 +15,9 @@ class MapquestFacade
     travel_time = data[:route][:realTime]
     Time.now.to_i + travel_time
   end
+
+  def self.travel_time(origin, destination)
+    data = MapquestService.get_directions(origin, destination)
+    data[:route][:formattedTime]
+  end
 end
