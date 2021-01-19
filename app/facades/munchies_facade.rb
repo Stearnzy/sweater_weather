@@ -1,16 +1,16 @@
 class MunchiesFacade
   def self.restaurant_response(starting, ending, food)
     eta = MapquestFacade.arrival_time(starting, ending)
-    require 'pry'; binding.pry
-    # eta = Time.now + travel_time
-
+    time = eta.to_i
 
     ending_coords = MapquestFacade.location_to_coordinates(ending)
     forecast = ForecastService.complete_weather_report(ending_coords.lat, ending_coords.long)
 
+    dest_forecast = forecast[:hourly].detect{|hour| hour[:dt] >= time}
 
+    forecast_description = dest_forecast[:weather][0[:description]
+    forecast_temp = dest_forecast[:temp]
 
-require 'pry'; binding.pry
 
 
     # {

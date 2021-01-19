@@ -19,4 +19,10 @@ class MapquestFacade
     travel_time = data[:route][:realTime]
     Time.now + travel_time
   end
+
+  def self.get_weather_at_destination(destination_weather, destination_final_time)
+    destination_weather.select do |hourly|
+      destination_final_time == Time.at(hourly[:dt])
+    end
+  end
 end
