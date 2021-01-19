@@ -4,6 +4,13 @@ class ForecastFacade
     Forecast.new(current_weather(data), hourly_weather(data), daily_weather(data))
   end
 
+  def self.trip_future_weather(unix_eta, destination)
+    data = weather_at_location(destination)
+    weather_upon_arrival = hourly_weather(data).select do |hour|
+      hour.time.to_time.to_i <= unix_eta
+    end.last
+  end
+
   def self.weather_at_location(location)
     map_data = MapquestFacade.location_to_coordinates(location)
     ForecastService.complete_weather_report(map_data.lat, map_data.long)
