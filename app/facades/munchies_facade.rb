@@ -17,12 +17,12 @@ class MunchiesFacade
 
     restaurant = YelpFacade.get_restaurant(ending, food)
 
-    {
+    response = {
       "data": {
         "id": "#{nil}",
         "type": "munchie",
         "attributes": {
-          "destination_city": "#{destination_city.dest_state}, #{destination_city.dest_state},",
+          "destination_city": "#{destination_city.dest_city}, #{destination_city.dest_state},",
           "travel_time": "#{travel_time.time}",
           "forecast": {
             "summary": "#{forecast_description}",
@@ -35,9 +35,7 @@ class MunchiesFacade
         }
       }
     }
-  end
 
-  def self.get_destination_weather()
-    
+    response
   end
 end

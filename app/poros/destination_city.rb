@@ -1,5 +1,5 @@
 class DestinationCity
-  attr_reader :destination
+  attr_reader :destination, :dest_city, :dest_state
 
   def initialize(data)
     @dest_city = data[:route][:locations][1][:adminArea5]
