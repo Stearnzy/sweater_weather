@@ -33,17 +33,17 @@ http_interactions:
       P3p:
       - CP="NON UNI COM NAV STA LOC CURa DEVa PSAa PSDa OUR IND"
       Bingapis-Traceid:
-      - 6BBC6C19381548509C3AFB7D3A9D1660
+      - E72088CD5F0E4CFCB33490CBAA93856E
       X-Msedge-Clientid:
-      - 1380A67B2A6F6A3C395FA9B82B236B20
+      - 3B28E54B18036D593B80EA8F194F6C64
       X-Msapi-Userstate:
-      - f800
+      - d0bf
       X-Search-Responseinfo:
-      - InternalResponseTime=206,MSDatacenter=CO4
+      - InternalResponseTime=123,MSDatacenter=CO4
       X-Msedge-Ref:
-      - 'Ref A: 6BBC6C19381548509C3AFB7D3A9D1660 Ref B: BY3EDGE0408 Ref C: 2021-01-18T23:49:07Z'
+      - 'Ref A: E72088CD5F0E4CFCB33490CBAA93856E Ref B: BY3EDGE0218 Ref C: 2021-01-19T00:33:59Z'
       Apim-Request-Id:
-      - 5d9a94da-e010-4206-9dbc-b87995caf002
+      - 8b4a3e85-7cca-414c-a387-f1ff2e0a5566
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
@@ -51,7 +51,7 @@ http_interactions:
       Csp-Billing-Usage:
       - CognitiveServices.BingSearchV7.Transaction=1
       Date:
-      - Mon, 18 Jan 2021 23:49:07 GMT
+      - Tue, 19 Jan 2021 00:33:59 GMT
     body:
       encoding: UTF-8
       string: '{"_type": "Images", "instrumentation": {"_type": "ResponseInstrumentation"},
@@ -364,5 +364,5 @@ http_interactions:
         "https:\/\/www.bing.com\/images\/search?q=Coors+Field+Denver&FORM=IRPATC",
         "searchLink": "https:\/\/api.bing.microsoft.com\/api\/v7\/images\/search?q=Coors+Field+Denver",
         "thumbnail": {"thumbnailUrl": "https:\/\/tse3.mm.bing.net\/th?q=Coors+Field+Denver&pid=Api&mkt=en-US&adlt=strict&t=1"}}]}'
-  recorded_at: Mon, 18 Jan 2021 23:49:07 GMT
+  recorded_at: Tue, 19 Jan 2021 00:33:59 GMT
 recorded_with: VCR 6.0.0

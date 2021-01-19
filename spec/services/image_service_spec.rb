@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe BackgroundService do
+describe ImageService do
   it 'can retrieve image based on location', :vcr do
     location = 'Denver, CO'
-    data = BackgroundService.search_for_image(location)
+    data = ImageService.search_for_image(location)
     expect(data).to be_a Hash
 
     expect(data).to have_key(:_type)

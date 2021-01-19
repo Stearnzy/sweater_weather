@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-describe Background do
+describe Image do
   before(:each) do
-    VCR.use_cassette('BackgroundService/can_retrieve_image_based_on_location') do
+    VCR.use_cassette('ImageService/can_retrieve_image_based_on_location') do
       location = 'Denver, CO'
-      data = BackgroundService.search_for_image(location)
-      @image = Background.new(data)
+      data = ImageService.search_for_image(location)
+      @image = Image.new(data)
     end
   end
 
   it 'exists' do
-    expect(@image).to be_a Background
+    expect(@image).to be_a Image
   end
 
   it 'has attributes' do

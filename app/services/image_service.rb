@@ -1,4 +1,4 @@
-class BackgroundService
+class ImageService
   def self.search_for_image(location)
     response = conn.get('/v7.0/images/search') do |req|
       req.params[:q] = location

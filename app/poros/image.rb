@@ -1,4 +1,4 @@
-class Background
+class Image
   attr_reader :supplier, :image_url, :source
 
   def initialize(data)
