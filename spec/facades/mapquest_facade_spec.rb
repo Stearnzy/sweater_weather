@@ -11,4 +11,15 @@ describe MapquestFacade do
       expect(data).to have_attributes(long: Float)
     end
   end
+
+  it 'can get travel time between locations' do
+    VCR.use_cassette('MapquestService/returns_data_between_two_locations') do
+      trip_start = 'denver,co'
+      trip_end = 'pueblo,co'
+      data = MapquestFacade.travel_time(trip_start, trip_end)
+
+      expect(data).to be_a TravelTime
+      expect(data).to have_attributes(time: String)
+    end
+  end
 end
