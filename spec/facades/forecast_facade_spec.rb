@@ -12,6 +12,16 @@ describe ForecastFacade, :vcr do
     expect(forecast).to have_attributes(daily_weather: Array)
   end
 
+  it 'trip_future_weather' do
+    unix_eta = 1611104795
+    destination = 'Pueblo, CO'
+
+    forecast = ForecastFacade.trip_future_weather(unix_eta, destination)
+    expect(forecast).to be_an HourlyWeather
+
+    expect(forecast.time.to_time.to_i).to be <= unix_eta
+  end
+
   it '#weather_at_location' do
     location = 'Pueblo, CO'
     data = ForecastFacade.weather_at_location(location)
