@@ -3,4 +3,9 @@ class MapquestFacade
     data = MapquestService.location_coordinates(location)
     Coordinates.new(data)
   end
+
+  def self.travel_time(trip_start, trip_end)
+    data = MapquestService.get_directions(trip_start, trip_end)
+    TravelTime.new(data)
+  end
 end
