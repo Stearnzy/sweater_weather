@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'TravelTime' do
   before(:each) do
     VCR.use_cassette('MapquestService/returns_data_between_two_locations') do
-      trip_start = 'denver,co'
-      trip_end = 'pueblo,co'
+      trip_start = 'Denver, CO'
+      trip_end = 'Pueblo, CO'
       data = MapquestService.get_directions(trip_start, trip_end)
 
       @travel_time = TravelTime.new(data)
@@ -17,5 +17,6 @@ describe 'TravelTime' do
 
   it 'has attributes' do
     expect(@travel_time).to have_attributes(time: String)
+    expect(@travel_time.time).to_not be_empty
   end
 end
