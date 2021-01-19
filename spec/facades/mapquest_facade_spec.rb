@@ -22,4 +22,15 @@ describe MapquestFacade do
       expect(data).to have_attributes(time: String)
     end
   end
+
+  it 'can get the destination city in string form' do
+    VCR.use_cassette('MapquestService/returns_data_between_two_locations') do
+      trip_start = 'Denver, CO'
+      trip_end = 'Pueblo, CO'
+      data = MapquestFacade.destination_city(trip_start, trip_end)
+
+      expect(data).to be_a DestinationCity
+      expect(data).to have_attributes(destination: 'Pueblo, CO')
+    end
+  end
 end
