@@ -42,6 +42,7 @@ describe 'User Create' do
     expect(User.count).to eq(1)
   end
 
+  # SAD
   it 'gives an error if email is taken' do
     user_1 = create(:user, email: 'guy@email.com')
 
