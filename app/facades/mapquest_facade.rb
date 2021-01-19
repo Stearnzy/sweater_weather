@@ -13,4 +13,10 @@ class MapquestFacade
     data = MapquestService.get_directions(trip_start, trip_end)
     DestinationCity.new(data)
   end
+
+  def self.arrival_time(trip_start, trip_end)
+    data = MapquestService.get_directions(trip_start, trip_end)
+    travel_time = data[:route][:realTime]
+    Time.now + travel_time
+  end
 end
