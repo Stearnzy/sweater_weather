@@ -31,7 +31,6 @@ describe MapquestService, :vcr do
     trip_end = 'Pueblo, CO'
 
     data = MapquestService.get_directions(trip_start, trip_end)
-
     expect(data).to be_a Hash
     expect(data).to have_key(:route)
     expect(data[:route]).to be_a Hash
@@ -41,6 +40,18 @@ describe MapquestService, :vcr do
 
     expect(data[:route]).to have_key(:formattedTime)
     expect(data[:route][:formattedTime]).to be_a String
+
+    expect(data[:route]).to have_key(:locations)
+    expect(data[:route][:locations]).to be_an Array
+    expect(data[:route][:locations][1]).to be_a Hash
+
+    expect(data[:route][:locations][1]).to have_key(:adminArea5)
+    expect(data[:route][:locations][1][:adminArea5]).to be_a String
+    expect(data[:route][:locations][1][:adminArea5]).to eq('Pueblo')
+    
+    expect(data[:route][:locations][1]).to have_key(:adminArea3)
+    expect(data[:route][:locations][1][:adminArea3]).to be_a String
+    expect(data[:route][:locations][1][:adminArea3]).to eq('CO')
   end
 
   # SAD
