@@ -5,7 +5,7 @@ describe Image do
     VCR.use_cassette('ImageService/can_retrieve_image_based_on_location') do
       location = 'Denver, CO'
       data = ImageService.search_for_image(location)
-      @image = Image.new(data)
+      @image = Image.new(data, location)
     end
   end
 
@@ -14,8 +14,14 @@ describe Image do
   end
 
   it 'has attributes' do
-    expect(@image).to have_attributes(supplier: String)
-    expect(@image).to have_attributes(source: String)
+    expect(@image).to have_attributes(id: nil)
+    expect(@image).to have_attributes(location: String)
     expect(@image).to have_attributes(image_url: String)
+
+    expect(@image).to have_attributes(credit: Hash)
+    expect(@image.credit).to have_key(:supplier)
+    expect(@image.credit[:supplier]).to be_a String
+    expect(@image.credit).to have_key(:source)
+    expect(@image.credit[:source]).to be_a String
   end
 end
