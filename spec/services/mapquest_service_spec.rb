@@ -26,6 +26,34 @@ describe MapquestService, :vcr do
     expect(data[:results].first[:locations].first[:latLng][:lng]).to eq(-104.984853)
   end
 
+  it 'returns data between two locations' do
+    trip_start = 'Denver, CO'
+    trip_end = 'Pueblo, CO'
+
+    data = MapquestService.get_directions(trip_start, trip_end)
+    expect(data).to be_a Hash
+    expect(data).to have_key(:route)
+    expect(data[:route]).to be_a Hash
+
+    expect(data[:route]).to have_key(:distance)
+    expect(data[:route][:distance]).to be_a Float
+
+    expect(data[:route]).to have_key(:formattedTime)
+    expect(data[:route][:formattedTime]).to be_a String
+
+    expect(data[:route]).to have_key(:locations)
+    expect(data[:route][:locations]).to be_an Array
+    expect(data[:route][:locations][1]).to be_a Hash
+
+    expect(data[:route][:locations][1]).to have_key(:adminArea5)
+    expect(data[:route][:locations][1][:adminArea5]).to be_a String
+    expect(data[:route][:locations][1][:adminArea5]).to eq('Pueblo')
+
+    expect(data[:route][:locations][1]).to have_key(:adminArea3)
+    expect(data[:route][:locations][1][:adminArea3]).to be_a String
+    expect(data[:route][:locations][1][:adminArea3]).to eq('CO')
+  end
+
   # SAD
   it 'Returns an error when empty string is entered' do
     city_input = ''
