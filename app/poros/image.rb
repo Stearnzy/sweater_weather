@@ -1,9 +1,13 @@
 class Image
-  attr_reader :supplier, :image_url, :source
+  attr_reader :id, :location, :image_url, :credit
 
-  def initialize(data)
-    @supplier = data[:value][0][:name]
+  def initialize(data, location)
+    @id = nil
+    @location = location
     @image_url = data[:value][0][:contentUrl]
-    @source = data[:value][0][:hostPageDisplayUrl]
+    @credit = { 
+      supplier: data[:value][0][:name],
+      source: data[:value][0][:hostPageDisplayUrl]
+     }
   end
 end
