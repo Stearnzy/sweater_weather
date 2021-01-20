@@ -68,4 +68,21 @@ describe MapquestService, :vcr do
     expect(data[:info][:messages]).to be_an Array
     expect(data[:info][:messages].first).to eq('Illegal argument from request: Insufficient info for location')
   end
+
+  it 'gives an error for impossible road trips' do
+    origin = 'New York, NY'
+    destination = 'London, UK'
+
+    data = MapquestService.get_directions(origin, destination)
+    expect(data).to be_a Hash
+    expect(data).to have_key(:info)
+    expect(data[:info]).to be_a Hash
+    expect(data[:info]).to have_key(:statuscode)
+    expect(data[:info][:statuscode]).to eq(402)
+
+    expect(data[:info]).to have_key(:messages)
+    expect(data[:info][:messages]).to be_an Array
+    expect(data[:info][:messages][0]).to be_a String
+    expect(data[:info][:messages][0]).to eq('We are unable to route with the given locations.')
+  end
 end
