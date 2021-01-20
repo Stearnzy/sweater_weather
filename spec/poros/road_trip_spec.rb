@@ -1,16 +1,14 @@
 require 'rails_helper'
 
-describe 'RoadTrip' do
+describe 'RoadTrip', :vcr do
   before(:each) do
-    VCR.use_cassette('ForecastFacade/trip_future_weather') do
-      origin = 'Denver, CO'
-      destination = 'Pueblo, CO'
-      travel_time = '01:44:22'
-      unix_eta = 1_611_106_848
-      @weather_at_destination = ForecastFacade.trip_future_weather(unix_eta, destination)
+    origin = 'Denver, CO'
+    destination = 'Pueblo, CO'
+    travel_time = '01:44:22'
+    unix_eta = MapquestFacade.arrival_time(origin, destination)
+    @weather_at_destination = ForecastFacade.trip_future_weather(unix_eta, destination)
 
-      @trip = RoadTrip.new(travel_time, @weather_at_destination, origin, destination)
-    end
+    @trip = RoadTrip.new(travel_time, @weather_at_destination, origin, destination)
   end
 
   it 'exists' do
