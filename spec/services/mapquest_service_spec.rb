@@ -32,6 +32,11 @@ describe MapquestService, :vcr do
 
     data = MapquestService.get_directions(trip_start, trip_end)
     expect(data).to be_a Hash
+    expect(data).to have_key(:info)
+    expect(data[:info]).to be_a Hash
+    expect(data[:info]).to have_key(:statuscode)
+    expect(data[:info][:statuscode]).to eq(0)
+
     expect(data).to have_key(:route)
     expect(data[:route]).to be_a Hash
 
