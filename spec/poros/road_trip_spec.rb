@@ -9,7 +9,7 @@ describe 'RoadTrip' do
       unix_eta = 1_611_106_848
       @weather_at_destination = ForecastFacade.trip_future_weather(unix_eta, destination)
 
-      @trip = RoadTrip.new(travel_time, unix_eta, @weather_at_destination, origin, destination)
+      @trip = RoadTrip.new(travel_time, @weather_at_destination, origin, destination)
     end
   end
 
@@ -47,5 +47,14 @@ describe 'RoadTrip' do
     }
 
     expect(@trip.temp_and_conditions(@weather_at_destination)).to eq(expected)
+  end
+
+  # SAD
+  it 'time_to_words returns impossible' do
+    expect(@trip.time_to_words('Impossible')).to eq('Impossible')
+  end
+
+  it 'nil weather returns empty temp_and_conditions' do
+    expect(@trip.temp_and_conditions(nil)).to eq({})
   end
 end
