@@ -1,19 +1,36 @@
 class ForecastFacade
   def self.get_weather_report(location)
+    data = weather_at_location(location)
+    Forecast.new(current_weather(data), hourly_weather(data), daily_weather(data))
+  end
+
+  def self.trip_future_weather(unix_eta, destination)
+    data = weather_at_location(destination)
+    hour_of_arrival = data[:hourly].select do |hour|
+      hour[:dt] <= unix_eta
+    end.last
+
+    HourlyWeather.new(hour_of_arrival)
+  end
+
+  def self.weather_at_location(location)
     map_data = MapquestFacade.location_to_coordinates(location)
+    ForecastService.complete_weather_report(map_data.lat, map_data.long)
+  end
 
-    weather_data = ForecastService.complete_weather_report(map_data.lat, map_data.long)
+  def self.current_weather(weather_data)
+    CurrentWeather.new(weather_data[:current])
+  end
 
-    current_weather = CurrentWeather.new(weather_data[:current])
-
-    hourly_weather = weather_data[:hourly][0..7].map do |hour|
+  def self.hourly_weather(weather_data)
+    weather_data[:hourly][0..7].map do |hour|
       HourlyWeather.new(hour)
     end
+  end
 
-    daily_weather = weather_data[:daily][0..4].map do |day|
+  def self.daily_weather(weather_data)
+    weather_data[:daily][0..4].map do |day|
       DailyWeather.new(day)
     end
-
-    Forecast.new(current_weather, hourly_weather, daily_weather)
   end
 end

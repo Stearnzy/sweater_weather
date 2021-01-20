@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'User Create' do
   it 'can create a user', :vcr do
+    User.delete_all
     expect(User.count).to eq(0)
 
     headers = { 'Content-Type' => 'application/json', 'Accept' => 'application/json' }
@@ -62,7 +63,7 @@ describe 'User Create' do
     expect(parsed_response).to be_a Hash
     expect(parsed_response).to have_key(:error)
     expect(parsed_response[:error]).to be_a String
-    expect(parsed_response[:error]).to eq('User create failed')
+    expect(parsed_response[:error]).to eq('Email has already been taken')
   end
 
   it 'gives an error if passwords do not match' do
@@ -82,7 +83,8 @@ describe 'User Create' do
     expect(parsed_response).to be_a Hash
     expect(parsed_response).to have_key(:error)
     expect(parsed_response[:error]).to be_a String
-    expect(parsed_response[:error]).to eq('User create failed')
+
+    expect(parsed_response[:error]).to eq("Password_confirmation doesn't match Password")
   end
 
   it 'gives an error if password confirm is empty' do
@@ -102,7 +104,7 @@ describe 'User Create' do
     expect(parsed_response).to be_a Hash
     expect(parsed_response).to have_key(:error)
     expect(parsed_response[:error]).to be_a String
-    expect(parsed_response[:error]).to eq('User create failed')
+    expect(parsed_response[:error]).to eq("Password_confirmation doesn't match Password")
   end
 
   it 'gives an error if email is empty' do
@@ -122,6 +124,26 @@ describe 'User Create' do
     expect(parsed_response).to be_a Hash
     expect(parsed_response).to have_key(:error)
     expect(parsed_response[:error]).to be_a String
-    expect(parsed_response[:error]).to eq('User create failed')
+    expect(parsed_response[:error]).to eq("Email can't be blank")
+  end
+
+  it 'gives an error if password fields are both empty' do
+    headers = { 'Content-Type' => 'application/json', 'Accept' => 'application/json' }
+
+    body = {
+      'email': 'guy@email.com',
+      'password': '',
+      'password_confirmation': ''
+    }
+
+    post '/api/v1/users', headers: headers, params: JSON.generate(body)
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    parsed_response = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed_response).to be_a Hash
+    expect(parsed_response).to have_key(:error)
+    expect(parsed_response[:error]).to be_a String
+    expect(parsed_response[:error]).to eq("Password can't be blank")
   end
 end

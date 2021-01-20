@@ -1,8 +1,8 @@
 class ForecastService
   def self.complete_weather_report(lat, long)
     response = conn.get('/data/2.5/onecall') do |req|
-      req.params[:lat] = "#{lat}"
-      req.params[:lon] = "#{long}"
+      req.params[:lat] = lat.to_s
+      req.params[:lon] = long.to_s
       req.params[:units] = 'imperial'
       req.params[:appid] = ENV['OPENWEATHER_KEY']
     end

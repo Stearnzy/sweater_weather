@@ -1,8 +1,18 @@
 class MapquestService
   def self.location_coordinates(location_input)
-    response = conn.get("/geocoding/v1/address") do |req|
+    response = conn.get('/geocoding/v1/address') do |req|
       req.params[:key] = ENV['MAPQUEST_KEY']
-      req.params[:location] = "#{location_input}"
+      req.params[:location] = location_input.to_s
+    end
+
+    parse(response)
+  end
+
+  def self.get_directions(trip_start, trip_end)
+    response = conn.get('/directions/v2/route') do |req|
+      req.params[:key] = ENV['MAPQUEST_KEY']
+      req.params[:from] = trip_start.to_s
+      req.params[:to] = trip_end.to_s
     end
 
     parse(response)

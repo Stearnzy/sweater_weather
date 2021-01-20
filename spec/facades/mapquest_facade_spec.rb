@@ -11,4 +11,47 @@ describe MapquestFacade do
       expect(data).to have_attributes(long: Float)
     end
   end
+
+  it 'can get an ETA' do
+    VCR.use_cassette('MapquestService/returns_data_between_two_locations') do
+      origin = 'Denver, CO'
+      destination = 'Pueblo, CO'
+
+      unix_eta = MapquestFacade.arrival_time(origin, destination)
+
+      expect(unix_eta).to be_an Integer
+    end
+  end
+
+  it 'can get the travel time' do
+    VCR.use_cassette('MapquestService/returns_data_between_two_locations') do
+      origin = 'Denver, CO'
+      destination = 'Pueblo, CO'
+
+      travel_time = MapquestFacade.travel_time(origin, destination)
+
+      expect(travel_time).to be_a String
+      expect(travel_time).to_not be_empty
+      expect(travel_time.length).to eq(8)
+      expect(travel_time[2]).to eq(':')
+      expect(travel_time[5]).to eq(':')
+    end
+  end
+
+  # SAD
+  it 'impossible routes give impossible travel times', :vcr do
+    origin = 'New York, NY'
+    destination = 'London, UK'
+
+    data = MapquestFacade.travel_time(origin, destination)
+
+    expect(data).to eq('Impossible')
+  end
+
+  it 'returns impossible if status code is not 0', :vcr do
+    origin = 'New York, NY'
+    destination = 'London, UK'
+
+    expect(MapquestFacade.travel_time(origin, destination)).to eq('Impossible')
+  end
 end
