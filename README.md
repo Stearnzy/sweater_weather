@@ -1,6 +1,6 @@
 # Sweater Weather
 
-<img src="https://media.giphy.com/media/l0HlPwMAzh13pcZ20/giphy.gif" alt="weather">
+<img src="https://media.giphy.com/media/l0HlPwMAzh13pcZ20/giphy.gif" alt="weather" align="center">
 
 This is the final Mod 3 project as part of Turing School of Software and Design's Back-End Engineering program.  This is a Rails API built to accompany a hypothetical Front-End application consuming the Back-End's endpoints for gathering weather forecast data (current, 8-hour, and 5-day) for a location, a background image of the city, registering users, creating sessions, and creating road trips.  The road trip functionality goes further to grab travel time between two entered locations and the weather forecast for that estimated time of arrival.
 
