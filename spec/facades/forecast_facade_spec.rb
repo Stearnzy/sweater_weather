@@ -12,9 +12,11 @@ describe ForecastFacade, :vcr do
     expect(forecast).to have_attributes(daily_weather: Array)
   end
 
-  it 'trip_future_weather' do
-    unix_eta = 1611104795
+  it 'hours #trip_future_weather' do
+    origin = 'Denver, CO'
     destination = 'Pueblo, CO'
+
+    unix_eta = MapquestFacade.arrival_time(origin, destination)
 
     forecast = ForecastFacade.trip_future_weather(unix_eta, destination)
     expect(forecast).to be_an HourlyWeather
