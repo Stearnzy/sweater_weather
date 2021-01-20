@@ -57,4 +57,23 @@ describe 'Road Trip Create', :vcr do
     expect(parsed[:data][:attributes][:weather_at_eta]).to have_key(:conditions)
     expect(parsed[:data][:attributes][:weather_at_eta][:conditions]).to be_a String
   end
+
+  # SAD
+  it 'errors if api key does not match' do
+    body = {
+      "origin": 'Denver,CO',
+      "destination": 'Pueblo,CO',
+      "api_key": 'nonexistent_key'
+    }
+
+    post '/api/v1/road_trip', headers: @headers, params: JSON.generate(body)
+    expect(response).to_not be_successful
+    expect(response.status).to eq(401)
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to be_a Hash
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq('Invalid Api Key')
+  end
 end
