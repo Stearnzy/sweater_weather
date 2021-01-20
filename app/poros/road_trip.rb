@@ -5,7 +5,7 @@ class RoadTrip
               :travel_time,
               :weather_at_eta
 
-  def initialize(travel_time, _unix_eta, weather_at_destination, origin, destination)
+  def initialize(travel_time, weather_at_destination, origin, destination)
     @id = nil
     @start_city = origin
     @end_city = destination
@@ -14,18 +14,26 @@ class RoadTrip
   end
 
   def time_to_words(travel_time)
-    split = travel_time.split(':').map { |unit| unit.to_i }
-    if split[0] == 0
-      "#{split[1]} minutes"
-    elsif split[0] == 1
-      "#{split[0]} hour, #{split[1]} minutes"
+    if travel_time != 'Impossible'
+      split = travel_time.split(':').map { |unit| unit.to_i }
+      if split[0] == 0
+        "#{split[1]} minutes"
+      elsif split[0] == 1
+        "#{split[0]} hour, #{split[1]} minutes"
+      else
+        "#{split[0]} hours, #{split[1]} minutes"
+      end
     else
-      "#{split[0]} hours, #{split[1]} minutes"
+      'Impossible'
     end
   end
 
   def temp_and_conditions(weather_at_destination)
-    { "temperature": weather_at_destination.temperature,
-      "conditions": weather_at_destination.conditions }
+    if weather_at_destination.nil?
+      {}
+    else
+      { "temperature": weather_at_destination.temperature,
+        "conditions": weather_at_destination.conditions }
+    end
   end
 end
