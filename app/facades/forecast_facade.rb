@@ -6,9 +6,11 @@ class ForecastFacade
 
   def self.trip_future_weather(unix_eta, destination)
     data = weather_at_location(destination)
-    hourly_weather(data).select do |hour|
-      hour.time.to_time.to_i <= unix_eta
+    hour_of_arrival = data[:hourly].select do |hour|
+      hour[:dt] <= unix_eta
     end.last
+
+    HourlyWeather.new(hour_of_arrival)
   end
 
   def self.weather_at_location(location)
