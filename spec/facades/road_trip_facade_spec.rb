@@ -7,6 +7,7 @@ describe 'RoadTripFacade', :vcr do
 
     trip = RoadTripFacade.new_road_trip(origin, destination)
 
+    expect(trip).to be_a RoadTrip
     expect(trip).to have_attributes(start_city: String)
     expect(trip).to have_attributes(end_city: String)
     expect(trip).to have_attributes(travel_time: String)
