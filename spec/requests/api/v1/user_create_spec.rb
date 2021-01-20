@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'User Create' do
   it 'can create a user', :vcr do
+    User.delete_all
     expect(User.count).to eq(0)
 
     headers = { 'Content-Type' => 'application/json', 'Accept' => 'application/json' }
