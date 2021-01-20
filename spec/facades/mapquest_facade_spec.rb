@@ -47,4 +47,11 @@ describe MapquestFacade do
 
     expect(data).to eq('Impossible')
   end
+
+  it 'returns impossible if status code is not 0', :vcr do
+    origin = 'New York, NY'
+    destination = 'London, UK'
+
+    expect(MapquestFacade.travel_time(origin, destination)).to eq('Impossible')
+  end
 end
