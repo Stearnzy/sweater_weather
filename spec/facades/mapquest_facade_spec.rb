@@ -37,4 +37,14 @@ describe MapquestFacade do
       expect(travel_time[5]).to eq(':')
     end
   end
+
+  # SAD
+  it 'impossible routes give impossible travel times', :vcr do
+    origin = 'New York, NY'
+    destination = 'London, UK'
+
+    data = MapquestFacade.travel_time(origin, destination)
+
+    expect(data).to eq('Impossible')
+  end
 end
