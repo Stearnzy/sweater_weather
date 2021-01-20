@@ -32,7 +32,7 @@ As always, Test-Driven Development was a major concept practiced in the making o
 This scratch Rails API consumes the [MapQuest Geocoding API](https://developer.mapquest.com/documentation/geocoding-api/), the [OpenWeather One Call API](https://openweathermap.org/api/one-call-api) and the [Bing Search API](https://docs.microsoft.com/en-us/azure/cognitive-services/bing-web-search/).  Utilizing various endpoints from these APIs and manipulating the data through services, facades and poros, my application's backend routes could be called to return JSON-serialized data based on what the 'front end user' would input.  Search endpoints include current, hourly and daily forecasts for a location and location photos utilizing the Bing Search API.  Frontend users can also register an email and password to receive a randomly-generated API key (all saved in User table) as well as create a Session by providing this API key.  Road trips can also be created by providing the API key, an origin location and a destination location.  This provides the frontend with the entered locations, drive time, and the forecast of the destination location at the estimated arrival time.
 ### Database Structure
 
-<img src='https://i.postimg.cc/xdfXRHk6/Screen-Shot-2021-01-19-at-10-26-40-PM.png'>
+<img src='https://i.postimg.cc/xdfXRHk6/Screen-Shot-2021-01-19-at-10-26-40-PM.png' width="30%">
 
 
 ## Setup
