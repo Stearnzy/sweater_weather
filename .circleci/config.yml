@@ -3,15 +3,9 @@ orbs:
   ruby: circleci/ruby@0.1.2 
 
 jobs:
-  deploy:
-    machine:
-      image: ubuntu-1604:202004-01
-    steps:
-      - ruby/install:
-          version: '2.5.3'
   build:
     docker:
-      - image: circleci/ruby:2.6.3-stretch-node
+      - image: circleci/ruby:2.5.3
     executor: ruby/default
     steps:
       - checkout
